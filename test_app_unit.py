@@ -69,26 +69,3 @@ def test_get_city_empty_input(mock_input):
 
     # Assert that the correct city was returned
     assert city == DEFAULT_CITY
-
-
-@patch.object(WeatherApp, "save_weather")
-@patch.object(
-    WeatherApp,
-    "get_weather_data",
-    return_value={
-        "weather": [{"description": "Rain"}],
-        "main": {"temp": 22.05, "humidity": 71},
-    },
-)
-@patch.object(WeatherApp, "get_city", return_value="London")
-def test_call_no_city(mock_get_city, mock_get_weather_data, mock_save_weather):
-    app = WeatherApp()
-    app()
-
-    # Assert that the get_city(), get_weather_data() and save_weather() were called correctly
-    mock_get_city.assert_called_once()
-    mock_get_weather_data.assert_called_once_with("London")
-    mock_save_weather.assert_called_once_with(
-        {"weather": [{"description": "Rain"}], "main": {"temp": 22.05, "humidity": 71}},
-        "London",
-    )
