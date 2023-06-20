@@ -7,7 +7,6 @@ from decouple import config
 OW_API_KEY = config("OW_API_KEY")
 DEFAULT_CITY = "Alicante"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
-# f"https://api.openweathermap.org/data/2.5/weather?appid={OW_API_KEY}&lang=en&units=metric&q={city}"
 
 
 class WeatherApp:
@@ -22,7 +21,6 @@ class WeatherApp:
 
     def get_weather_data(self, city):
         url = BASE_URL.format(city, OW_API_KEY)
-        # url = BASE_URL + f"?q={city}&appid={OW_API_KEY}"
         response = requests.get(url)
         return response.json()
 
@@ -53,6 +51,6 @@ class WeatherApp:
         self.save_weather(weather_data, city)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     app = WeatherApp()
     app()
