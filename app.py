@@ -46,8 +46,9 @@ class WeatherApp:
         conn.close()
         print(f"Saved weather data for {city}")
 
-    def __call__(self):
-        city = self.get_city()
+    def __call__(self, city=None):
+        if city is None:
+            city = self.get_city()
         weather_data = self.get_weather_data(city)
         self.save_weather(weather_data, city)
 
