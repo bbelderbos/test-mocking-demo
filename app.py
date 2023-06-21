@@ -1,8 +1,8 @@
-import requests
 import sqlite3
 import time
 
 from decouple import config
+import requests
 
 OW_API_KEY = config("OW_API_KEY")
 DEFAULT_CITY = "Alicante"
